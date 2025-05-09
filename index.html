@@ -1,0 +1,134 @@
+<!DOCTYPE html>
+<html lang="no">
+<head>
+  <meta charset="UTF-8">
+  <title>Folkehøyskole Quotes</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <style>
+    body {
+      font-family: 'Arial', sans-serif;
+      background-color: #fcebea;
+      margin: 0;
+      padding: 0;
+      color: #333;
+      text-align: center;
+    }
+
+    header {
+      background-color: #88181a;
+      color: white;
+      padding: 2rem;
+    }
+
+    main {
+      display: none;
+      padding: 2rem;
+    }
+
+    .person-link {
+      display: block;
+      margin: 1rem auto;
+      padding: 1rem;
+      background-color: white;
+      width: 200px;
+      border-radius: 8px;
+      box-shadow: 0 4px 8px rgba(0,0,0,0.1);
+      text-decoration: none;
+      color: #003366;
+      font-weight: bold;
+      transition: background-color 0.2s;
+    }
+
+    .person-link:hover {
+      background-color: #e6eef5;
+    }
+
+    #passwordPrompt {
+      position: fixed;
+      top: 0; left: 0;
+      width: 100%; height: 100%;
+      background: rgba(0, 0, 0, 0.5);
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      z-index: 9999;
+    }
+
+    #passwordPrompt div {
+      background: white;
+      padding: 2rem;
+      border-radius: 8px;
+      box-shadow: 0 4px 10px rgba(0,0,0,0.2);
+    }
+
+    input {
+      padding: 0.5rem;
+      margin-top: 1rem;
+      width: 200px;
+    }
+
+    button {
+      padding: 0.5rem 1rem;
+      background-color: #003366;
+      color: white;
+      border: none;
+      margin-top: 1rem;
+      cursor: pointer;
+    }
+
+    footer {
+      margin-top: 2rem;
+      font-size: 0.9rem;
+      color: #666;
+    }
+  </style>
+</head>
+<body>
+
+  <div id="passwordPrompt">
+    <div>
+      <h2>Skriv inn passord for å se siden</h2>
+      <input type="password" id="password" placeholder="Passord">
+      <br>
+      <button onclick="checkPassword()">Logg inn</button>
+    </div>
+  </div>
+
+  <header>
+    <h1>Folkehøyskole Quotes</h1>
+    <p>Velg en venn for å lese gullkornene</p>
+  </header>
+
+  <main id="mainContent">
+    <a href="marie.html" class="person-link">Marie</a>
+    <a href="marianne.html" class="person-link">Marianne</a>
+    <a href="johanna.html" class="person-link">Johanna</a>
+    <a href="sigrun.html" class="person-link">Sigrun</a>
+  </main>
+
+  <footer>&copy; 2025 Folkehøyskoleklassen</footer>
+
+  <script>
+    function checkPassword() {
+      const password = document.getElementById("password").value;
+      const correct = "FHS"; // ← Endre dette passordet
+
+      if (password === correct) {
+        localStorage.setItem("isLoggedIn", "true"); // ← lagrer info i nettleseren
+        document.getElementById("passwordPrompt").style.display = "none";
+        document.getElementById("mainContent").style.display = "block";
+      } else {
+        alert("Feil passord!");
+      }
+
+    }
+
+    window.onload = function () {
+        if (localStorage.getItem("isLoggedIn") === "true") {
+            document.getElementById("passwordPrompt").style.display = "none";
+            document.getElementById("mainContent").style.display = "block";
+    }
+    };
+  </script>
+</body>
+</html>
